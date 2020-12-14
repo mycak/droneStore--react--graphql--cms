@@ -1,12 +1,17 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import { ApolloProvider } from '@apollo/client';
 import Page from '../components/Page';
+import withData from '../lib/withData.js';
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, apollo }) {
   return (
-    <Page>
-      <Component {...pageProps} />
-    </Page>
-  )
+    <ApolloProvider client={apollo}>
+      <Page>
+        <Component {...pageProps} />
+      </Page>
+    </ApolloProvider>
+  );
 }
 
-export default MyApp;
+export default withData(MyApp);
