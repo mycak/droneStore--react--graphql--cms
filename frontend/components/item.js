@@ -44,7 +44,7 @@ const Item = (props) => {
 Item.propTypes = {
   item: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
   }),
 };
 

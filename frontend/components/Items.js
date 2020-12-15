@@ -30,22 +30,20 @@ const ItemsList = styled.div`
 
 const Items = () => {
   const { loading, error, data } = useQuery(ALL_ITEMS_QUERY);
-  console.log(data, loading, error);
   return (
     <Center>
-      {() => {
-        if (loading) return <p>Loading...</p>;
-        if (error) return <p>Error: {error.message}</p>;
-        return (
-          <ItemsList>
-            {data.items.map((item) => (
-              <Item item={item} key={item.id} />
-            ))}
-          </ItemsList>
-        );
-      }}
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error.message}</p>}
+      {data && (
+        <ItemsList>
+          {data.items.map((item) => (
+            <Item item={item} key={item.id} />
+          ))}
+        </ItemsList>
+      )}
     </Center>
   );
 };
 
 export default Items;
+export { ALL_ITEMS_QUERY };
