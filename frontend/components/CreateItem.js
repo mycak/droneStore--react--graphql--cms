@@ -27,14 +27,37 @@ const CreateItem = () => {
   const [state, setState] = useState({
     title: 'Cool Shoes',
     description: 'I love those shoes',
-    image: 'dog.jpg',
+    image: null,
     largeImage: 'large-dog.jpg',
     price: 1000,
   });
+
   const [
     createItem,
     { loading: mutationLoading, error: mutationError },
   ] = useMutation(CREATE_ITEM_MUTATION);
+
+  const uploadFile = async (e) => {
+    const { files } = e.target;
+    const data = new FormData();
+    data.append('file', files[0]);
+    data.append('upload_preset', 'drones_store');
+
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/dng3to5tn/image/upload',
+      {
+        method: 'POST',
+        body: data,
+      }
+    );
+    const file = await res.json();
+    setState({
+      ...state,
+      image: file.secure_url,
+      largeImage: file.eager[0].secure_url,
+    });
+    console.log(state);
+  };
 
   return (
     <>
@@ -51,6 +74,20 @@ const CreateItem = () => {
         }}
       >
         <fieldset aria-busy={mutationLoading} disabled={mutationLoading}>
+          <label htmlFor="file">
+            Image
+            <input
+              type="file"
+              id="file"
+              name="file"
+              placeholder="Upload an image"
+              required
+              onChange={uploadFile}
+            />
+            {state.image && (
+              <img width="200" src={state.image} alt="Upload Preview" />
+            )}
+          </label>
           <label htmlFor="title">
             Title
             <input

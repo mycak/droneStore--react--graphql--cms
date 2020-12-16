@@ -1,7 +1,7 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import styled from 'styled-components';
-import Item from './item';
+import Item from './Item';
 
 const ALL_ITEMS_QUERY = gql`
   query ALL_ITEMS_QUERY {

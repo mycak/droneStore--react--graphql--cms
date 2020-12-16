@@ -1,10 +1,10 @@
 import React from 'react';
 import CreateItem from '../components/CreateItem';
 
-const sell = () => (
+const Sell = () => (
   <div>
     <CreateItem />
   </div>
 );
 
-export default sell;
+export default Sell;
