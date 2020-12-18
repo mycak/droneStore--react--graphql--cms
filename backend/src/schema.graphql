@@ -18,6 +18,8 @@ type Query {
     orderBy: ItemOrderByInput
     skip: Int
     first: Int
+    offset: Int
+    limit: Int
   ): [Item]!
   item(where: ItemWhereUniqueInput!): Item
   itemsConnection(where: ItemWhereInput): ItemConnection!
