@@ -34,9 +34,9 @@ const ItemsList = styled.div`
 const Items = ({ page }) => {
   const { loading, error, data } = useQuery(ALL_ITEMS_QUERY, {
     variables: {
-      first: 4,
-      skip: 4,
+      skip: page * perPage - perPage,
     },
+    fetchPolicy: 'network-only',
   });
   return (
     <Center>
