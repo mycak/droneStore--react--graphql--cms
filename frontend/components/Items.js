@@ -1,7 +1,9 @@
+/* eslint-disable import/no-cycle */
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import styled from 'styled-components';
 import Item from './Item';
+import Pagination from './Pagination';
 
 const ALL_ITEMS_QUERY = gql`
   query ALL_ITEMS_QUERY {
@@ -28,10 +30,11 @@ const ItemsList = styled.div`
   margin: 0 auto;
 `;
 
-const Items = () => {
+const Items = ({ page }) => {
   const { loading, error, data } = useQuery(ALL_ITEMS_QUERY);
   return (
     <Center>
+      <Pagination page={page} />
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
       {data && (
@@ -41,6 +44,7 @@ const Items = () => {
           ))}
         </ItemsList>
       )}
+      <Pagination page={page} />
     </Center>
   );
 };

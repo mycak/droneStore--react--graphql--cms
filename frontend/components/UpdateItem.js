@@ -63,6 +63,7 @@ const UpdateItem = ({ id }) => {
       return !!data.item;
     }
   };
+
   const queryNotExist = () => {
     if (data) {
       if (!data.item) {
@@ -70,14 +71,12 @@ const UpdateItem = ({ id }) => {
       }
     }
   };
-  const esa = queryExist();
-  const esa2 = queryNotExist();
 
   return (
     <>
       {loading && <p>Loading...</p>}
-      {esa2 && <p>No Item Found for ID {id}</p>}
-      {esa && (
+      {queryNotExist() && <p>No Item Found for ID {id}</p>}
+      {queryExist() && (
         <Form onSubmit={handleUpdateItem}>
           <fieldset aria-busy={mutationLoading} disabled={mutationLoading}>
             <label htmlFor="title">
