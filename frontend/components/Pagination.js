@@ -16,8 +16,9 @@ const PAGINATION_QUERY = gql`
 `;
 
 const Pagination = ({ page }) => {
-  const { data, loading } = useQuery(PAGINATION_QUERY);
-  if (loading) return null;
+  const { data, loading, error } = useQuery(PAGINATION_QUERY);
+  if (loading) return <p />;
+  if (error) return <p>error</p>;
   const { count } = data.itemsConnection.aggregate;
   const pages = Math.ceil(count / perPage);
   return (
@@ -28,7 +29,6 @@ const Pagination = ({ page }) => {
         </title>
       </Head>
       <Link
-        prefetch
         href={{
           pathname: 'items',
           query: { page: page - 1 },
@@ -43,7 +43,6 @@ const Pagination = ({ page }) => {
       </p>
       <p>{count} Items Total</p>
       <Link
-        prefetch
         href={{
           pathname: 'items',
           query: { page: page + 1 },
