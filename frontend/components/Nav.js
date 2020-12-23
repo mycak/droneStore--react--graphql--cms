@@ -1,11 +1,12 @@
 import Link from 'next/link';
+import Signout from './Signout';
 import NavStyles from './styles/NavStyles';
 import User from './User';
 
 const Nav = () => (
   <User>
     {(data) => {
-      if (!data) {
+      if (data && !data.me) {
         return (
           <NavStyles>
             <Link href="/items">
@@ -31,6 +32,7 @@ const Nav = () => (
           <Link href="/me">
             <a>Account</a>
           </Link>
+          <Signout />
         </NavStyles>
       );
     }}
