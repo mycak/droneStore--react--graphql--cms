@@ -29,7 +29,9 @@ const DeleteItem = ({ id, children }) => {
       type="button"
       onClick={() => {
         if (confirm('Are you sure you want to delete this item?')) {
-          deleteItem({ variables: { id } });
+          deleteItem({ variables: { id } }).catch((err) => {
+            alert(err.message);
+          });
         }
       }}
     >
