@@ -7,6 +7,7 @@ import ItemStyles from './styles/ItemStyles';
 import PriceTag from './styles/PriceTag';
 import formatMoney from '../lib/formatMoney';
 import DeleteItem from './DeleteItem';
+import AddToCart from './AddToCart';
 
 const Item = (props) => {
   const { item } = props;
@@ -36,7 +37,7 @@ const Item = (props) => {
         >
           <a>Edit ✏️</a>
         </Link>
-        <button type="button">Add To Cart</button>
+        <AddToCart id={item.id} />
         <DeleteItem id={item.id} type="button">
           Deleteeeee{' '}
         </DeleteItem>
