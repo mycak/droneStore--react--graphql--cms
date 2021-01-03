@@ -9,6 +9,7 @@ import CloseButton from './styles/CloseButton';
 import SickButton from './styles/SickButton';
 import calcTotalPrice from '../lib/calcTotalPrice';
 import formatMoney from '../lib/formatMoney';
+import TakeMyMoney from './TakeMyMoney';
 
 const LOCAL_STATE_QUERY = gql`
   query {
@@ -33,32 +34,37 @@ const Cart = () => {
   return (
     <Composed>
       {({ user }) => {
-        const userData = !!user;
-        if (!userData) return <p>Loading...</p>;
-        if (userData && !userData.me) return null;
-        return (
-          <CartStyles open={data.cartOpen}>
-            <header>
-              <CloseButton title="close" onClick={toggleCart}>
-                &times;
-              </CloseButton>
-              <Supreme>{userData.me.name} Your Cart</Supreme>
-              <p>
-                You Have {userData.me.cart.length} Item
-                {userData.me.cart.length === 1 ? '' : 's'} in your cart.
-              </p>
-            </header>
-            <ul>
-              {userData.me.cart.map((cartItem) => (
-                <CartItem key={cartItem.id} cartItem={cartItem} />
-              ))}
-            </ul>
-            <footer>
-              <p>{formatMoney(calcTotalPrice(userData.me.cart))}</p>
-              <SickButton>Checkout</SickButton>
-            </footer>
-          </CartStyles>
-        );
+        if (user) {
+          if (user.me) {
+            return (
+              <CartStyles open={data.cartOpen}>
+                <header>
+                  <CloseButton title="close" onClick={toggleCart}>
+                    &times;
+                  </CloseButton>
+                  <Supreme>{user.me.name} Your Cart</Supreme>
+                  <p>
+                    You Have {user.me.cart.length} Item
+                    {user.me.cart.length === 1 ? '' : 's'} in your cart.
+                  </p>
+                </header>
+                <ul>
+                  {user.me.cart.map((cartItem) => (
+                    <CartItem key={cartItem.id} cartItem={cartItem} />
+                  ))}
+                </ul>
+                <footer>
+                  <p>{formatMoney(calcTotalPrice(user.me.cart))}</p>
+                  <TakeMyMoney>
+                    <SickButton>Checkout</SickButton>
+                  </TakeMyMoney>
+                </footer>
+              </CartStyles>
+            );
+          }
+          return <p>Loading...</p>;
+        }
+        if (!user) return <p>Loading...</p>;
       }}
     </Composed>
   );
