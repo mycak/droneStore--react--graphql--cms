@@ -64,7 +64,7 @@ const Cart = () => {
           }
           return <p>Loading...</p>;
         }
-        if (!user) return <p>Loading...</p>;
+        if (!user) return null;
       }}
     </Composed>
   );

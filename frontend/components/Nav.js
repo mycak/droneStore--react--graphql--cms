@@ -51,7 +51,7 @@ const Nav = () => {
             </NavStyles>
           );
         }
-        return <p>Loading...</p>;
+        return <p />;
       }}
     </User>
   );
