@@ -10,7 +10,6 @@ const ADD_TO_CART_MUTATION = gql`
     }
   }
 `;
-// addtocart
 const AddToCart = ({ id }) => {
   const [addToCart] = useMutation(ADD_TO_CART_MUTATION);
   return (
