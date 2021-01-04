@@ -29,7 +29,6 @@ const RemoveFromCart = ({ id }) => {
     console.log('Running remove from cart update fn');
     // 1. first read the cache
     const data = cache.readQuery({ query: CURRENT_USER_QUERY });
-    console.log(data);
     // 2. remove that item from the cart
     const cartItemId = payload.data.removeFromCart.id;
     data.me.cart = data.me.cart.filter(
