@@ -91,7 +91,7 @@ const AutoComplete = () => {
                 ))}
               </DropDown>
             )}
-            {state.items && !state.items.length && !state.loading && (
+            {isOpen && state.items && !state.items.length && !state.loading && (
               <DropDownItem> Nothing Found {inputValue}</DropDownItem>
             )}
           </div>

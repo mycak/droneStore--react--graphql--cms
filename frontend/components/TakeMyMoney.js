@@ -1,10 +1,10 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import { useMutation, gql } from '@apollo/client';
+import Router from 'next/router';
+import NProgress from 'nprogress';
 import calcTotalPrice from '../lib/calcTotalPrice';
 import User, { CURRENT_USER_QUERY } from './User';
-// import Router from 'next/router';
-// import NProgress from 'nprogress';
 // import Proptypes from 'prop-types';
 // import Error from './ErrorMessage';
 
@@ -30,6 +30,7 @@ const TakeMyMoney = (props) => {
   const [createOrder] = useMutation(CREATE_ORDER_MUTATION);
 
   const onToken = async (res) => {
+    NProgress.start();
     console.log('On Token Called!');
     console.log(res.id);
 
@@ -41,8 +42,10 @@ const TakeMyMoney = (props) => {
     }).catch((err) => {
       alert(err.message);
     });
-
-    console.log(order);
+    Router.push({
+      pathname: '/order',
+      query: { id: order.data.createOrder.id },
+    });
   };
 
   return (
