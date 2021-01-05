@@ -1,6 +1,7 @@
 #endpoint: ${env:PRISMA_ENDPOINT}
 #endpoint: https://drones-store-prod-24f3440ad6.herokuapp.com/drones-store-prod/prod
-endpoint: https://drones-store-prod-db7ad782c1.herokuapp.com/drones-store-prod/prod
+#endpoint: https://drones-store-prod-db7ad782c1.herokuapp.com/drones-store-prod/prod
+endpoint: https://drones-store-prod-db7ad782c1.herokuapp.com/dron-store-production/prod
 datamodel: datamodel.graphql
 secret: ${env:PRISMA_SECRET}
 hooks:
