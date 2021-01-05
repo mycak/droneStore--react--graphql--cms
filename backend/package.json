@@ -32,5 +32,8 @@
     "presets": [
       "env"
     ]
+  },
+  "resolutions": {
+    "express": "4.17.0"
   }
 }
