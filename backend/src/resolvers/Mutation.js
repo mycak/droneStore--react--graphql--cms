@@ -84,10 +84,12 @@ const Mutations = {
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     // We set the jwt as a cookie on the response
     ctx.response.cookie('token', token, {
+      domain: process.env.NODE_ENV === 'production' ? undefined : process.env.APP_DOMAIN,
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year cookie
       secure: process.env.NODE_ENV === "production",
       sameSite: "None",
+      path: '/'
     });
     // Finalllllly we return the user to the browser
     return user;
@@ -107,10 +109,12 @@ const Mutations = {
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     // 4. Set the cookie with the token
     ctx.response.cookie('token', token, {
+      domain: process.env.NODE_ENV === 'production' ? undefined : process.env.APP_DOMAIN,
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 365,
+      maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year cookie
       secure: process.env.NODE_ENV === "production",
       sameSite: "None",
+      path: '/'
     });
     // 5. Return the user
     return user;
