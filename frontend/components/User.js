@@ -33,12 +33,7 @@ const Container = styled.div`
 
 const User = ({ children }) => {
   const { data, loading } = useQuery(CURRENT_USER_QUERY);
-  return (
-    <Container>
-      <p>{loading}</p>
-      {children(data, loading)}
-    </Container>
-  );
+  return <Container>{children(data, loading)}</Container>;
 };
 
 User.propTypes = {

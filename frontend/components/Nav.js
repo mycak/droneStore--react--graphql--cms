@@ -11,6 +11,7 @@ const Nav = () => {
   return (
     <User>
       {(data) => {
+        console.log(data);
         if (data && !data.me) {
           return (
             <NavStyles>
@@ -20,6 +21,7 @@ const Nav = () => {
               <Link href="/signup">
                 <a>Sign In</a>
               </Link>
+              <p>essa</p>
             </NavStyles>
           );
         }
