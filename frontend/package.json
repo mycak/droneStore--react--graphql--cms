@@ -1,7 +1,7 @@
 {
   "name": "drones-store-frontend",
   "version": "1.0.0",
-  "description": "Drones Store! An example React, GraphQL, Next and Apollo",
+  "description": "Drones Store! An example React, GraphQL, Next and Apollo!",
   "main": "index.js",
   "engines": {
     "node": "12.x"
