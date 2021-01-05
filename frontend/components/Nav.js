@@ -10,8 +10,8 @@ const Nav = () => {
   const [toggleCart] = useMutation(TOGGLE_CART_MUTATION);
   return (
     <User>
-      {(data) => {
-        console.log(data);
+      {(data, loading) => {
+        console.log(data, loading);
         if (data && !data.me) {
           return (
             <NavStyles>
@@ -21,7 +21,6 @@ const Nav = () => {
               <Link href="/signup">
                 <a>Sign In</a>
               </Link>
-              <p>essa</p>
             </NavStyles>
           );
         }
