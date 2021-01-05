@@ -33,6 +33,7 @@ const Container = styled.div`
 
 const User = ({ children }) => {
   const { data, loading } = useQuery(CURRENT_USER_QUERY);
+  console.log(data);
   return <Container>{children(data, loading)}</Container>;
 };
 
