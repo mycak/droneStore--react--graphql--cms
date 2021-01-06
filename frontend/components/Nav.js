@@ -40,7 +40,7 @@ const Nav = () => {
                 <a>Account</a>
               </Link>
               <Signout />
-              {/* <button type="button" onClick={toggleCart}>
+              <button type="button" onClick={toggleCart}>
                 My Cart
                 <CartCount
                   count={data.me.cart.reduce(
@@ -48,7 +48,7 @@ const Nav = () => {
                     0
                   )}
                 />
-              </button> */}
+              </button>
             </NavStyles>
           );
         }
